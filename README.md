@@ -1,4 +1,4 @@
-![Sketch Compile](https://github.com/ameeuwsen/vac/actions/workflows/compile-vac/badge.svg)
+![Compile VAC](https://github.com/ameeuwsen/vac/actions/workflows/compile-vac.yml/badge.svg)
 # Vehicle Accessory Controller (vac)
 Sketch to control various lighting and other functions for custom vehicle wiring setups.
 
