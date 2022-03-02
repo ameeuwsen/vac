@@ -35,10 +35,10 @@ A number of inputs and outputs are predefined when instantiating the Vac class.
 
 ## Functions overview
 Most of the code that executes is housed in a custom library that handles all timing/switching/sensing. The library is flexible enough to take inputs either created in the library itself on instantiation or using pins defined on the Arduino sketch side. Predefined functions are listed below.
-### onOff(input, output) - 1 input > 1 output
+### onOff(input, output) - 1 input ➡️ 1 output
 This function is for simple switching by reading for a HIGH input and writing HIGH for one output. Defaults to LOW for output.
 
-### onOffTwo(input, output, output) - 1 input > 2 outputs
+### onOffTwo(input, output, output) - 1 input ➡️ 2 outputs
 This function is for simple switching by reading for a HIGH input and writing a HIGH output for two defined outputs. Defaults to LOW for both outputs.
 
 ### blinkers() - used exclusively for blinker functions
