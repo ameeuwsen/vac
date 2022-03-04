@@ -59,6 +59,9 @@ public:
     // Single input, single output.
     void onOff(byte input, byte output);
 
+    // Single input, double output.
+    void onOffTwo(byte input, byte output, byte output2);
+
     // Blinker control function.
     void blinkerControl();
 

@@ -43,13 +43,13 @@ void Vac::setup() {
     pinMode(driverBlinkers, OUTPUT);
     pinMode(passengerBlinkers, OUTPUT);
     pinMode(tailLights, OUTPUT);
-	pinMode(brakeLights, OUTPUT);
-	pinMode(headLights, OUTPUT);
-	pinMode(turnLeft, INPUT);
-	pinMode(turnRight, INPUT);
-	pinMode(hazards, INPUT);
-	pinMode(tails, INPUT);
-	pinMode(brakes, INPUT);
+  	pinMode(brakeLights, OUTPUT);
+  	pinMode(headLights, OUTPUT);
+  	pinMode(turnLeft, INPUT);
+  	pinMode(turnRight, INPUT);
+  	pinMode(hazards, INPUT);
+  	pinMode(tails, INPUT);
+  	pinMode(brakes, INPUT);
     pinMode(heads, INPUT);
 }
 
@@ -58,6 +58,16 @@ void Vac::onOff(byte input, byte output) {
         digitalWrite(output, HIGH);
     } else  {
         digitalWrite(output, LOW);
+    }
+}
+
+void Vac::onOffTwo(byte input, byte output, byte output2) {
+    if(digitalRead(input) == HIGH) {
+        digitalWrite(output, HIGH);
+        digitalWrite(output2, HIGH);
+    } else  {
+        digitalWrite(output, LOW);
+        digitalWrite(output2, HIGH);
     }
 }
 
