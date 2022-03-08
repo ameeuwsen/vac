@@ -17,8 +17,8 @@ jobs:
       - name: Compile VAC
         uses: arduino/compile-sketches@v1
         with:
-        platforms: |
-          - name: "arduino:mbed_portenta"
+          platforms: |
+            - name: "arduino:mbed_portenta"
           fqbn: |
             - arduino:mbed_portenta:envie_m7
           sketch-paths: |
