@@ -1,6 +1,10 @@
 [![compile vac](https://github.com/ameeuwsen/vac/actions/workflows/compile-vac.yml/badge.svg)](https://github.com/ameeuwsen/vac/actions/workflows/compile-vac.yml)
 # Vehicle Accessory Controller (vac)
+### Overview
 Sketch to control lighting and other functions for custom vehicle wiring. Outputs should be wired to fuse protected relays to power devices. Resistors should be used to any inputs to protect against false digital reads.
+
+### Important Notes
+The sketch was designed and debugged against the [Arduino Portenta H7](https://store-usa.arduino.cc/products/portenta-h7?selectedStore=us). The sketch is stable and will work with any Arduino board, however debugging functions are specfic to Portenta and may not compile on other boards if debugging is enabled.
 
 ## Setup
 - Edit lines 5-17 to match your input and output pins
@@ -49,6 +53,13 @@ This function assumes 4 blinker outputs that are defined in the library itself w
 ## Debugging
 This program does come with limited debugging feedback. Simply set the debug value in Vac class declaration in Arduino sketch to desired value.
 
-## @TODO
-- [ ]Add comfort blinker timing function with definable timing and blinks
-- [ ]Provide functionality for low and high beams
+## Future updates
+- [ ] Add comfort blinker timing function with definable timing and blinks
+- [ ] Provide functionality for low and high beams
+
+## Disclaimer
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
