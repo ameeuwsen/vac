@@ -18,7 +18,7 @@ Vac::Vac(byte _driverBlinkers,
          byte _tails,
          byte _brakes,
          byte _heads,
-         byte _blinkerTiming,
+         int _blinkerTiming,
          byte _autoTails,
          byte _debug) {
 
@@ -51,6 +51,17 @@ void Vac::setup() {
   	pinMode(tails, INPUT);
   	pinMode(brakes, INPUT);
     pinMode(heads, INPUT);
+    blinkerState = 0;
+
+    if(debug == 1) {
+        Serial.begin(15200);
+        pinMode(LEDR, OUTPUT);
+        pinMode(LEDG, OUTPUT);
+        pinMode(LEDB, OUTPUT);
+        digitalWrite(LEDR, HIGH);
+        digitalWrite(LEDG, HIGH);
+        digitalWrite(LEDB, HIGH);
+  }
 }
 
 void Vac::onOff(byte input, byte output) {
@@ -82,6 +93,10 @@ void Vac::blinkerControl() {
         digitalWrite(passengerBlinkers, HIGH);
         blinkerTimer = millis();
         blinkerState = 1;
+        if(debug == 1) {
+            Serial.println("Hazards initial on");
+            digitalWrite(LEDR, LOW);
+        }
     } else if(hazarding && blinkerState == 1) {
         if(millis() < blinkerTimer + blinkerTiming) {
             // Do nothing (keep blinkers on).
@@ -91,6 +106,10 @@ void Vac::blinkerControl() {
             digitalWrite(passengerBlinkers, LOW);
             blinkerTimer = millis();
             blinkerState = 2;
+            if(debug == 1) {
+                Serial.println("Hit blink timing, hazards off");
+                digitalWrite(LEDR, HIGH);
+            }
         }
     } else if(hazarding && blinkerState == 2) {
         if(millis() < blinkerTimer + blinkerTiming) {
@@ -101,12 +120,90 @@ void Vac::blinkerControl() {
             digitalWrite(passengerBlinkers, HIGH);
             blinkerTimer = millis();
             blinkerState = 1;
+            if(debug == 1) {
+                Serial.println("Hit blink timing, hazards on");
+                digitalWrite(LEDR, LOW);
+            }
+        }
+    } else if(turningLeft && blinkerState == 0) {
+        digitalWrite(driverBlinkers, HIGH);
+        blinkerTimer = millis();
+        blinkerState = 1;
+        if(debug == 1) {
+            Serial.println("Left blinkers initial on");
+            digitalWrite(LEDB, LOW);
+        }
+    } else if(turningLeft && blinkerState == 1) {
+        if(millis() < blinkerTimer + blinkerTiming) {
+            // Do nothing (keep blinkers on).
+        } else {
+            // Turn blinkers off.
+            digitalWrite(driverBlinkers, LOW);
+            blinkerTimer = millis();
+            blinkerState = 2;
+            if(debug == 1) {
+                Serial.println("Hit blink timing, left blinkers off");
+                digitalWrite(LEDB, HIGH);
+            }
+        }
+    } else if(turningLeft && blinkerState == 2) {
+        if(millis() < blinkerTimer + blinkerTiming) {
+            // Do nothing (keep blinkers off).
+        } else {
+            // Turn blinkers on.
+            digitalWrite(driverBlinkers, HIGH);
+            blinkerTimer = millis();
+            blinkerState = 1;
+            if(debug == 1) {
+                Serial.println("Hit blink timing, left blinkers on");
+                digitalWrite(LEDB, LOW);
+            }
+        }
+    } else if(turningRight && blinkerState == 0) {
+        digitalWrite(passengerBlinkers, HIGH);
+        blinkerTimer = millis();
+        blinkerState = 1;
+        if(debug == 1) {
+            Serial.println("Right blinkers initial on");
+            digitalWrite(LEDG, LOW);
+        }
+    } else if(turningRight && blinkerState == 1) {
+        if(millis() < blinkerTimer + blinkerTiming) {
+            // Do nothing (keep blinkers on).
+        } else {
+            // Turn blinkers off.
+            digitalWrite(passengerBlinkers, LOW);
+            blinkerTimer = millis();
+            blinkerState = 2;
+            if(debug == 1) {
+                Serial.println("Hit blink timing, right blinkers off");
+                digitalWrite(LEDG, HIGH);
+            }
+        }
+    } else if(turningRight && blinkerState == 2) {
+        if(millis() < blinkerTimer + blinkerTiming) {
+            // Do nothing (keep blinkers off).
+        } else {
+            // Turn blinkers on.
+            digitalWrite(passengerBlinkers, HIGH);
+            blinkerTimer = millis();
+            blinkerState = 1;
+            if(debug == 1) {
+                Serial.println("Hit blink timing, right blinkers on");
+                digitalWrite(LEDG, LOW);
+            }
         }
     } else {
         // Cleanup timer and blinkers.
         digitalWrite(driverBlinkers, LOW);
         digitalWrite(passengerBlinkers, LOW);
         blinkerState = 0;
+        if(debug == 1) {
+            Serial.println("Switch off, blinkers off");
+            digitalWrite(LEDR, HIGH);
+            digitalWrite(LEDB, HIGH);
+            digitalWrite(LEDG, HIGH);
+        }
     }
 }
 

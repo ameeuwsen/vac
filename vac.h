@@ -23,7 +23,7 @@ public:
          byte _tails,
          byte _brakes,
          byte _heads,
-         byte _blinkerTiming,
+         int _blinkerTiming,
          byte _autoTails,
          byte _debug);
 

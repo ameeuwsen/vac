@@ -50,7 +50,5 @@ This function assumes 4 blinker outputs that are defined in the library itself w
 This program does come with limited debugging feedback. Simply set the debug value in Vac class declaration in Arduino sketch to desired value.
 
 ## @TODO
-- Add comfort blinker timing function with definable timing and blinks
-- Enhance debugging mode to allow for serial only programming - account for random float values on digitalReads.
-- Consolidate onOff functions into one by using variable array for outputs - one input controlling any number of outputs.
-- Provide functionality for low and high beams
+- [ ]Add comfort blinker timing function with definable timing and blinks
+- [ ]Provide functionality for low and high beams
