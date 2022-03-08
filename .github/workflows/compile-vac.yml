@@ -17,7 +17,7 @@ jobs:
       - name: Compile VAC
         uses: arduino/compile-sketches@v1
         with:
-          fqbn:
+          fqbn: |
             - arduino-beta:mbed:envie_m7
           sketch-paths: |
             # Configure the action to search all folders under the root of the repository for sketches and compile them.
